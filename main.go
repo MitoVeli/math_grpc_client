@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"net/http"
 
 	grpcClient "github.com/MitoVeli/math_grpc_client/grpc"
@@ -19,7 +18,5 @@ func main() {
 		Addr: ":8008",
 	}
 	s.ListenAndServe()
-
-	fmt.Println("serving at 8008")
 
 }
