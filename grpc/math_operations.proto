@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package grpc;
+
+option go_package = "github.com/MitoVeli/math_grpc_server/grpc";
+
+service MathOperations {
+    rpc Add(OperationRequest) returns (OperationResponse) {}
+    rpc Subtract(OperationRequest) returns (OperationResponse) {}
+    rpc Multiply(OperationRequest) returns (OperationResponse) {}
+    rpc Divide(OperationRequest) returns (OperationResponse) {}
+}
+
+message OperationRequest {
+    int32 a = 1;
+    int32 b = 2;
+    int32 result = 3;
+}
+
+message OperationResponse {
+    int32 result = 1;
+}
