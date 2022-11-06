@@ -2,7 +2,6 @@ package main
 
 import (
 	"flag"
-	"fmt"
 	"log"
 
 	grpcClient "github.com/MitoVeli/math_grpc_client/grpc"
@@ -12,6 +11,12 @@ import (
 )
 
 func main() {
+
+	// TODO: tests
+	// TODO: check config
+	// TODO: check project structure, server, docker etc
+	// TODO: check folder structure as asked!
+	// TODO: check all comments and add if necessary
 
 	// declare flags
 	var firstNum int64
@@ -24,20 +29,23 @@ func main() {
 	flag.StringVar(&operationSign, "operationSign", "", "operation sign")
 	flag.Parse()
 
-	log.Println("firstNum:", firstNum, "secondNum:", secondNum, "operationSign:", operationSign)
+	log.Printf("firstNum: %d, secondNum: %d, operationSign: %s", firstNum, secondNum, operationSign)
 
+	// TODO: check below part again!!!
 	// initialize grpc client
 	grpcClient.InitializeMathRpc("localhost:" + configs.GrpcPort)
 
 	// initialize new math operation server
 	newMathOperationsService := gppcServer.NewMathOperationsService()
+
 	var result int64
+	// call math operation grpc server
 	err := newMathOperationsService.DoMath(firstNum, secondNum, operationSign, &result)
 	if err != nil {
-		log.Printf("Error while sending grpc request: %v", err)
+		log.Fatalf("Error while sending grpc request: %v", err)
 		return
 	}
 
-	fmt.Println("The result is:", result)
+	log.Printf("Result is: %v", result)
 
 }
