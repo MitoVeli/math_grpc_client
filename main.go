@@ -8,8 +8,7 @@ import (
 	grpcClient "math_grpc_client/grpc"
 
 	configs "math_grpc_client/configs"
-
-	gppcServer "github.com/MitoVeli/math_grpc_server/pkg"
+	// gppcServer "github.com/MitoVeli/math_grpc_server/pkg"
 )
 
 func main() {
