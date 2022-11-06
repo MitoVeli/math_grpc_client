@@ -5,4 +5,4 @@ import (
 )
 
 var AppPort = ":" + os.Getenv("APP_PORT")
-var GrpcPort = ":" + os.Getenv("GRPC_PORT")
+var GrpcPort = ":50051"

@@ -24,7 +24,7 @@ func InitializeMathRpc(connectionString string) {
 func Add(userId string) (*OperationResponse, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), defaultRequestTimeout)
 	defer cancel()
-	r, err := client.Add(ctx, &OperationRequest{A: 1, B: 2})
+	r, err := client.DoMath(ctx, &OperationRequest{X: 1, Y: 2, OperationSign: "+"})
 
 	if err != nil {
 		log.Printf("Error while calling Add function: %v", err)

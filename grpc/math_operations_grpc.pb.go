@@ -22,10 +22,7 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type MathOperationsClient interface {
-	Add(ctx context.Context, in *OperationRequest, opts ...grpc.CallOption) (*OperationResponse, error)
-	Subtract(ctx context.Context, in *OperationRequest, opts ...grpc.CallOption) (*OperationResponse, error)
-	Multiply(ctx context.Context, in *OperationRequest, opts ...grpc.CallOption) (*OperationResponse, error)
-	Divide(ctx context.Context, in *OperationRequest, opts ...grpc.CallOption) (*OperationResponse, error)
+	DoMath(ctx context.Context, in *OperationRequest, opts ...grpc.CallOption) (*OperationResponse, error)
 }
 
 type mathOperationsClient struct {
@@ -36,36 +33,9 @@ func NewMathOperationsClient(cc grpc.ClientConnInterface) MathOperationsClient {
 	return &mathOperationsClient{cc}
 }
 
-func (c *mathOperationsClient) Add(ctx context.Context, in *OperationRequest, opts ...grpc.CallOption) (*OperationResponse, error) {
+func (c *mathOperationsClient) DoMath(ctx context.Context, in *OperationRequest, opts ...grpc.CallOption) (*OperationResponse, error) {
 	out := new(OperationResponse)
-	err := c.cc.Invoke(ctx, "/grpc.MathOperations/Add", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *mathOperationsClient) Subtract(ctx context.Context, in *OperationRequest, opts ...grpc.CallOption) (*OperationResponse, error) {
-	out := new(OperationResponse)
-	err := c.cc.Invoke(ctx, "/grpc.MathOperations/Subtract", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *mathOperationsClient) Multiply(ctx context.Context, in *OperationRequest, opts ...grpc.CallOption) (*OperationResponse, error) {
-	out := new(OperationResponse)
-	err := c.cc.Invoke(ctx, "/grpc.MathOperations/Multiply", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *mathOperationsClient) Divide(ctx context.Context, in *OperationRequest, opts ...grpc.CallOption) (*OperationResponse, error) {
-	out := new(OperationResponse)
-	err := c.cc.Invoke(ctx, "/grpc.MathOperations/Divide", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/grpc.MathOperations/DoMath", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -76,10 +46,7 @@ func (c *mathOperationsClient) Divide(ctx context.Context, in *OperationRequest,
 // All implementations must embed UnimplementedMathOperationsServer
 // for forward compatibility
 type MathOperationsServer interface {
-	Add(context.Context, *OperationRequest) (*OperationResponse, error)
-	Subtract(context.Context, *OperationRequest) (*OperationResponse, error)
-	Multiply(context.Context, *OperationRequest) (*OperationResponse, error)
-	Divide(context.Context, *OperationRequest) (*OperationResponse, error)
+	DoMath(context.Context, *OperationRequest) (*OperationResponse, error)
 	mustEmbedUnimplementedMathOperationsServer()
 }
 
@@ -87,17 +54,8 @@ type MathOperationsServer interface {
 type UnimplementedMathOperationsServer struct {
 }
 
-func (UnimplementedMathOperationsServer) Add(context.Context, *OperationRequest) (*OperationResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Add not implemented")
-}
-func (UnimplementedMathOperationsServer) Subtract(context.Context, *OperationRequest) (*OperationResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Subtract not implemented")
-}
-func (UnimplementedMathOperationsServer) Multiply(context.Context, *OperationRequest) (*OperationResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Multiply not implemented")
-}
-func (UnimplementedMathOperationsServer) Divide(context.Context, *OperationRequest) (*OperationResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Divide not implemented")
+func (UnimplementedMathOperationsServer) DoMath(context.Context, *OperationRequest) (*OperationResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DoMath not implemented")
 }
 func (UnimplementedMathOperationsServer) mustEmbedUnimplementedMathOperationsServer() {}
 
@@ -112,74 +70,20 @@ func RegisterMathOperationsServer(s grpc.ServiceRegistrar, srv MathOperationsSer
 	s.RegisterService(&MathOperations_ServiceDesc, srv)
 }
 
-func _MathOperations_Add_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _MathOperations_DoMath_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(OperationRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(MathOperationsServer).Add(ctx, in)
+		return srv.(MathOperationsServer).DoMath(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/grpc.MathOperations/Add",
+		FullMethod: "/grpc.MathOperations/DoMath",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MathOperationsServer).Add(ctx, req.(*OperationRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _MathOperations_Subtract_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(OperationRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(MathOperationsServer).Subtract(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/grpc.MathOperations/Subtract",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MathOperationsServer).Subtract(ctx, req.(*OperationRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _MathOperations_Multiply_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(OperationRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(MathOperationsServer).Multiply(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/grpc.MathOperations/Multiply",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MathOperationsServer).Multiply(ctx, req.(*OperationRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _MathOperations_Divide_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(OperationRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(MathOperationsServer).Divide(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/grpc.MathOperations/Divide",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MathOperationsServer).Divide(ctx, req.(*OperationRequest))
+		return srv.(MathOperationsServer).DoMath(ctx, req.(*OperationRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -192,20 +96,8 @@ var MathOperations_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*MathOperationsServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "Add",
-			Handler:    _MathOperations_Add_Handler,
-		},
-		{
-			MethodName: "Subtract",
-			Handler:    _MathOperations_Subtract_Handler,
-		},
-		{
-			MethodName: "Multiply",
-			Handler:    _MathOperations_Multiply_Handler,
-		},
-		{
-			MethodName: "Divide",
-			Handler:    _MathOperations_Divide_Handler,
+			MethodName: "DoMath",
+			Handler:    _MathOperations_DoMath_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
