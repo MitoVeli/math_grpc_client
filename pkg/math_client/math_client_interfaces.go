@@ -1,5 +1,5 @@
 package pkg
 
 type MathGrpcClient interface {
-	Calculate(x float64, y float64, operationSign string, result *float64) error
+	Calculate(x float32, y float32, operationSign string, result *float32) error
 }

@@ -16,7 +16,7 @@ func NewMathClientService(mathGrpcServer mathGrpcServer.MathOperations) MathGrpc
 	}
 }
 
-func (s *mathClientService) Calculate(x float64, y float64, operationSign string, result *float64) error {
+func (s *mathClientService) Calculate(x float32, y float32, operationSign string, result *float32) error {
 
 	// call math operation grpc server
 	err := s.mathServer.DoMath(x, y, operationSign, result)

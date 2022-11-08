@@ -30,6 +30,10 @@ func main() {
 		operationSign = "+"
 	}
 
+	// convert firstNum from float64 to float32
+	x := float32(firstNum)
+	y := float32(secondNum)
+
 	// initialize new math operation server
 	mathGrpcServer := grpcServer.NewMathOperationsService()
 
@@ -40,8 +44,8 @@ func main() {
 	mathGrpcClient := grpcService.NewMathClientService(mathGrpcServer)
 
 	// trigger client math operation with given parameters
-	var result float64
-	err := mathGrpcClient.Calculate(firstNum, secondNum, operationSign, &result)
+	var result float32
+	err := mathGrpcClient.Calculate(x, y, operationSign, &result)
 	if err != nil {
 		log.Fatalf("Error while sending grpc request: %v", err)
 		return
