@@ -16,13 +16,13 @@ func main() {
 	// TODO: consider changing to float64
 
 	// declare flags
-	var firstNum int64
-	var secondNum int64
+	var firstNum float64
+	var secondNum float64
 	var operationSign string
 
 	// receive and parse flags
-	flag.Int64Var(&firstNum, "firstNum", 0, "first number")
-	flag.Int64Var(&secondNum, "secondNum", 0, "second number")
+	flag.Float64Var(&firstNum, "firstNum", 0.0, "first number")
+	flag.Float64Var(&secondNum, "secondNum", 0.0, "second number")
 	flag.StringVar(&operationSign, "operationSign", "", "operation sign")
 	flag.Parse()
 
