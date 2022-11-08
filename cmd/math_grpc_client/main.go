@@ -5,8 +5,8 @@ import (
 	"log"
 	"net/http"
 
-	grpcClient "github.com/MitoVeli/math_grpc_client/grpc"
-	grpcService "github.com/MitoVeli/math_grpc_client/pkg"
+	grpcClient "github.com/MitoVeli/math_grpc_client/pkg/grpc"
+	grpcService "github.com/MitoVeli/math_grpc_client/pkg/math_client"
 	gppcServer "github.com/MitoVeli/math_grpc_server/pkg"
 )
 
