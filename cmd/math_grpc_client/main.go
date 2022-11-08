@@ -7,16 +7,12 @@ import (
 
 	grpcClient "github.com/MitoVeli/math_grpc_client/pkg/grpc"
 	grpcService "github.com/MitoVeli/math_grpc_client/pkg/math_client"
-	gppcServer "github.com/MitoVeli/math_grpc_server/pkg"
+	grpcServer "github.com/MitoVeli/math_grpc_server/pkg/math"
 )
 
 func main() {
 
-	// TODO: tests
-	// TODO: check config
-	// TODO: check project structure, server, docker etc
 	// TODO: check folder structure as asked!
-	// TODO: check all comments and add if necessary
 	// TODO: consider changing to float64
 
 	// declare flags
@@ -35,7 +31,7 @@ func main() {
 	}
 
 	// initialize new math operation server
-	mathGrpcServer := gppcServer.NewMathOperationsService()
+	mathGrpcServer := grpcServer.NewMathOperationsService()
 
 	// initialize grpc client
 	grpcClient.InitializeMathRpc("localhost: 50051")
@@ -44,11 +40,14 @@ func main() {
 	mathGrpcClient := grpcService.NewMathClientService(mathGrpcServer)
 
 	// trigger client math operation with given parameters
-	err := mathGrpcClient.Calculate(firstNum, secondNum, operationSign)
+	var result int64
+	err := mathGrpcClient.Calculate(firstNum, secondNum, operationSign, &result)
 	if err != nil {
 		log.Fatalf("Error while sending grpc request: %v", err)
 		return
 	}
+
+	log.Printf("Result is: %v", float64(result))
 
 	// start http server
 	s := http.Server{

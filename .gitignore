@@ -46,3 +46,8 @@ Thumbs.db
 # gin-bin file for development
 gin-bin
 .ignores/
+
+# binary files
+*
+!/**/
+!*.*

@@ -3,7 +3,7 @@ package pkg
 import (
 	"log"
 
-	mathGrpcServer "github.com/MitoVeli/math_grpc_server/pkg"
+	mathGrpcServer "github.com/MitoVeli/math_grpc_server/pkg/math"
 )
 
 type mathClientService struct {
@@ -16,16 +16,14 @@ func NewMathClientService(mathGrpcServer mathGrpcServer.MathOperations) MathGrpc
 	}
 }
 
-func (s *mathClientService) Calculate(x int64, y int64, operationSign string) error {
+func (s *mathClientService) Calculate(x int64, y int64, operationSign string, result *int64) error {
 
-	var result int64
 	// call math operation grpc server
-	err := s.mathServer.DoMath(x, y, operationSign, &result)
+	err := s.mathServer.DoMath(x, y, operationSign, result)
 	if err != nil {
 		log.Fatalf("Error while sending grpc request: %v", err)
 		return err
 	}
 
-	log.Printf("Result is: %v", result)
 	return nil
 }
