@@ -14,4 +14,4 @@ RUN go build -o /cmd/math_grpc_client ./cmd/math_grpc_client
 # tells Docker that the container listens on specified network ports at runtime
 EXPOSE 8008
 # command to be used to execute when the image is used to start a container
-CMD [ “/cmd/math_grpc_client” ]
+ENTRYPOINT ["/cmd/math_grpc_client", "--firstNum=10", "--secondNum=20", "--operationSign=+"]

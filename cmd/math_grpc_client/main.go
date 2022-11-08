@@ -18,7 +18,6 @@ func main() {
 	// TODO: check folder structure as asked!
 	// TODO: check all comments and add if necessary
 	// TODO: consider changing to float64
-	// TODO: check imports within project
 
 	// declare flags
 	var firstNum int64
@@ -30,6 +29,10 @@ func main() {
 	flag.Int64Var(&secondNum, "secondNum", 0, "second number")
 	flag.StringVar(&operationSign, "operationSign", "", "operation sign")
 	flag.Parse()
+
+	if operationSign == "" {
+		operationSign = "+"
+	}
 
 	// initialize new math operation server
 	mathGrpcServer := gppcServer.NewMathOperationsService()
@@ -49,7 +52,7 @@ func main() {
 
 	// start http server
 	s := http.Server{
-		Addr: ":8080",
+		Addr: ":8008",
 	}
 	s.ListenAndServe()
 
