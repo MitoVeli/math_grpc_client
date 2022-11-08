@@ -22,7 +22,7 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type MathOperationsClient interface {
-	DoMath(ctx context.Context, in *OperationRequest, opts ...grpc.CallOption) (*OperationResponse, error)
+	Calculate(ctx context.Context, in *OperationRequest, opts ...grpc.CallOption) (*OperationResponse, error)
 }
 
 type mathOperationsClient struct {
@@ -33,9 +33,9 @@ func NewMathOperationsClient(cc grpc.ClientConnInterface) MathOperationsClient {
 	return &mathOperationsClient{cc}
 }
 
-func (c *mathOperationsClient) DoMath(ctx context.Context, in *OperationRequest, opts ...grpc.CallOption) (*OperationResponse, error) {
+func (c *mathOperationsClient) Calculate(ctx context.Context, in *OperationRequest, opts ...grpc.CallOption) (*OperationResponse, error) {
 	out := new(OperationResponse)
-	err := c.cc.Invoke(ctx, "/grpc.MathOperations/DoMath", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/grpc.MathOperations/Calculate", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -46,7 +46,7 @@ func (c *mathOperationsClient) DoMath(ctx context.Context, in *OperationRequest,
 // All implementations must embed UnimplementedMathOperationsServer
 // for forward compatibility
 type MathOperationsServer interface {
-	DoMath(context.Context, *OperationRequest) (*OperationResponse, error)
+	Calculate(context.Context, *OperationRequest) (*OperationResponse, error)
 	mustEmbedUnimplementedMathOperationsServer()
 }
 
@@ -54,8 +54,8 @@ type MathOperationsServer interface {
 type UnimplementedMathOperationsServer struct {
 }
 
-func (UnimplementedMathOperationsServer) DoMath(context.Context, *OperationRequest) (*OperationResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DoMath not implemented")
+func (UnimplementedMathOperationsServer) Calculate(context.Context, *OperationRequest) (*OperationResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Calculate not implemented")
 }
 func (UnimplementedMathOperationsServer) mustEmbedUnimplementedMathOperationsServer() {}
 
@@ -70,20 +70,20 @@ func RegisterMathOperationsServer(s grpc.ServiceRegistrar, srv MathOperationsSer
 	s.RegisterService(&MathOperations_ServiceDesc, srv)
 }
 
-func _MathOperations_DoMath_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _MathOperations_Calculate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(OperationRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(MathOperationsServer).DoMath(ctx, in)
+		return srv.(MathOperationsServer).Calculate(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/grpc.MathOperations/DoMath",
+		FullMethod: "/grpc.MathOperations/Calculate",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MathOperationsServer).DoMath(ctx, req.(*OperationRequest))
+		return srv.(MathOperationsServer).Calculate(ctx, req.(*OperationRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -96,8 +96,8 @@ var MathOperations_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*MathOperationsServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "DoMath",
-			Handler:    _MathOperations_DoMath_Handler,
+			MethodName: "Calculate",
+			Handler:    _MathOperations_Calculate_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

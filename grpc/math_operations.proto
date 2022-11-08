@@ -5,7 +5,7 @@ package grpc;
 option go_package = "github.com/MitoVeli/math_grpc_server/grpc";
 
 service MathOperations {
-    rpc DoMath(OperationRequest) returns (OperationResponse) {}
+    rpc Calculate(OperationRequest) returns (OperationResponse) {}
 }
 
 message OperationRequest {

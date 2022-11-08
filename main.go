@@ -4,9 +4,9 @@ import (
 	"flag"
 	"log"
 
-	grpcClient "github.com/MitoVeli/math_grpc_client/grpc"
-
 	configs "github.com/MitoVeli/math_grpc_client/configs"
+	grpcClient "github.com/MitoVeli/math_grpc_client/grpc"
+	grpcService "github.com/MitoVeli/math_grpc_client/pkg"
 	gppcServer "github.com/MitoVeli/math_grpc_server/pkg"
 )
 
@@ -17,6 +17,8 @@ func main() {
 	// TODO: check project structure, server, docker etc
 	// TODO: check folder structure as asked!
 	// TODO: check all comments and add if necessary
+	// TODO: consider changing to float64
+	// TODO: check imports within project
 
 	// declare flags
 	var firstNum int64
@@ -29,23 +31,20 @@ func main() {
 	flag.StringVar(&operationSign, "operationSign", "", "operation sign")
 	flag.Parse()
 
-	log.Printf("firstNum: %d, secondNum: %d, operationSign: %s", firstNum, secondNum, operationSign)
-
-	// TODO: check below part again!!!
 	// initialize grpc client
 	grpcClient.InitializeMathRpc("localhost:" + configs.GrpcPort)
 
 	// initialize new math operation server
-	newMathOperationsService := gppcServer.NewMathOperationsService()
+	mathGrpcServer := gppcServer.NewMathOperationsService()
 
-	var result int64
-	// call math operation grpc server
-	err := newMathOperationsService.DoMath(firstNum, secondNum, operationSign, &result)
+	// initialize new math grpc client
+	mathGrpcClient := grpcService.NewMathClientService(mathGrpcServer)
+
+	// trigger client math operation with given parameters
+	err := mathGrpcClient.Calculate(firstNum, secondNum, operationSign)
 	if err != nil {
 		log.Fatalf("Error while sending grpc request: %v", err)
 		return
 	}
-
-	log.Printf("Result is: %v", result)
 
 }

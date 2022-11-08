@@ -21,10 +21,10 @@ func InitializeMathRpc(connectionString string) {
 }
 
 // Get user's first and last names by user Id
-func Add(userId string) (*OperationResponse, error) {
+func Calculate(userId string) (*OperationResponse, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), defaultRequestTimeout)
 	defer cancel()
-	r, err := client.DoMath(ctx, &OperationRequest{X: 1, Y: 2, OperationSign: "+"})
+	r, err := client.Calculate(ctx, &OperationRequest{X: 1, Y: 2, OperationSign: "+"})
 
 	if err != nil {
 		log.Printf("Error while calling Add function: %v", err)
