@@ -40,7 +40,7 @@ func main() {
 	mathGrpcClient := grpcService.NewMathClientService(mathGrpcServer)
 
 	// trigger client math operation with given parameters
-	var result int64
+	var result float64
 	err := mathGrpcClient.Calculate(firstNum, secondNum, operationSign, &result)
 	if err != nil {
 		log.Fatalf("Error while sending grpc request: %v", err)
