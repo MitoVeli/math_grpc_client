@@ -1,16 +1,17 @@
-FROM golang:1.18 AS build
+# syntax=docker/dockerfile:1
 
-WORKDIR /go/src/github.com/MitoVeli/math_grpc_client
+FROM golang:1.16-alpine
+
+WORKDIR /app
+
+COPY go.mod ./
+COPY go.sum ./
+RUN go mod download
+
 COPY . .
 
-RUN go build -o /go/bin/math_grpc_client
+RUN go build -o /cmd/math_grpc_client
 
-FROM gcr.io/distroless/base-debian10
+EXPOSE 8008
 
-COPY --from=build /go/bin/math_grpc_client /go/bin/math_grpc_client
-
-ENV APP_PORT=8080
-ENV GRPC_PORT=50051
-
-ENTRYPOINT ["/go/bin/math_grpc_client"]
-
+CMD [ "/math_grpc_client" ]

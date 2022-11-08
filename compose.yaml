@@ -3,7 +3,6 @@ version: "3"
 services:
   math_client:
     build: .
-    image: math_client
     restart: always
     ports:
       - 8008:8008

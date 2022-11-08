@@ -31,11 +31,11 @@ func main() {
 	flag.StringVar(&operationSign, "operationSign", "", "operation sign")
 	flag.Parse()
 
-	// initialize grpc client
-	grpcClient.InitializeMathRpc("localhost:" + configs.GrpcPort)
-
 	// initialize new math operation server
 	mathGrpcServer := gppcServer.NewMathOperationsService()
+
+	// initialize grpc client
+	grpcClient.InitializeMathRpc("localhost:" + configs.GrpcPort)
 
 	// initialize new math grpc client
 	mathGrpcClient := grpcService.NewMathClientService(mathGrpcServer)
