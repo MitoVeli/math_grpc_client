@@ -23,7 +23,7 @@ func TestCalculate(t *testing.T) {
 		mockMathServer.On("DoMath", firstNumber, secondNumber, "+", &result).Return(nil)
 
 		// trigger client math operation with given parameters
-		err := mathGrpcClient.Calculate(firstNumber, secondNumber, "+")
+		err := mathGrpcClient.Calculate(firstNumber, secondNumber, "+", &result)
 
 		assert.NoError(t, err)
 	})
@@ -33,7 +33,7 @@ func TestCalculate(t *testing.T) {
 		mockMathServer.On("DoMath", firstNumber, secondNumber, "-", &result).Return(nil)
 
 		// trigger client math operation with given parameters
-		err := mathGrpcClient.Calculate(firstNumber, secondNumber, "-")
+		err := mathGrpcClient.Calculate(firstNumber, secondNumber, "-", &result)
 
 		assert.NoError(t, err)
 	})
@@ -43,7 +43,7 @@ func TestCalculate(t *testing.T) {
 		mockMathServer.On("DoMath", firstNumber, secondNumber, "*", &result).Return(nil)
 
 		// trigger client math operation with given parameters
-		err := mathGrpcClient.Calculate(firstNumber, secondNumber, "*")
+		err := mathGrpcClient.Calculate(firstNumber, secondNumber, "*", &result)
 
 		assert.NoError(t, err)
 	})
@@ -53,7 +53,7 @@ func TestCalculate(t *testing.T) {
 		mockMathServer.On("DoMath", firstNumber, secondNumber, "/", &result).Return(nil)
 
 		// trigger client math operation with given parameters
-		err := mathGrpcClient.Calculate(firstNumber, secondNumber, "/")
+		err := mathGrpcClient.Calculate(firstNumber, secondNumber, "/", &result)
 
 		assert.NoError(t, err)
 	})
