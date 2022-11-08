@@ -3,8 +3,8 @@ package main
 import (
 	"flag"
 	"log"
+	"net/http"
 
-	configs "github.com/MitoVeli/math_grpc_client/configs"
 	grpcClient "github.com/MitoVeli/math_grpc_client/grpc"
 	grpcService "github.com/MitoVeli/math_grpc_client/pkg"
 	gppcServer "github.com/MitoVeli/math_grpc_server/pkg"
@@ -35,7 +35,7 @@ func main() {
 	mathGrpcServer := gppcServer.NewMathOperationsService()
 
 	// initialize grpc client
-	grpcClient.InitializeMathRpc("localhost:" + configs.GrpcPort)
+	grpcClient.InitializeMathRpc("localhost: 50051")
 
 	// initialize new math grpc client
 	mathGrpcClient := grpcService.NewMathClientService(mathGrpcServer)
@@ -46,5 +46,11 @@ func main() {
 		log.Fatalf("Error while sending grpc request: %v", err)
 		return
 	}
+
+	// start http server
+	s := http.Server{
+		Addr: ":8080",
+	}
+	s.ListenAndServe()
 
 }

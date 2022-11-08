@@ -1,17 +1,17 @@
 # syntax=docker/dockerfile:1
-
-FROM golang:1.16-alpine
-
+# specify the base image to  be used for the application, alpine or ubuntu
+FROM golang:1.17-alpine
+# create a working directory inside the image
 WORKDIR /app
-
-COPY go.mod ./
-COPY go.sum ./
+# copy Go modules and dependencies to image
+COPY go.mod go.sum ./
+# download Go modules and dependencies
 RUN go mod download
-
+# copy directory files i.e all files ending with .go
 COPY . .
-
-RUN go build -o /cmd/math_grpc_client
-
+# compile application
+RUN go build -o /cmd/math_grpc_client ./cmd/math_grpc_client
+# tells Docker that the container listens on specified network ports at runtime
 EXPOSE 8008
-
-CMD [ "/math_grpc_client" ]
+# command to be used to execute when the image is used to start a container
+CMD [ “/cmd/math_grpc_client” ]
