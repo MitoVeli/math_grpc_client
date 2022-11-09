@@ -1,5 +1,5 @@
-github.com/MitoVeli/math_grpc_server v0.0.0-20221109000406-c5e5e7581ff9 h1:KCT+Bch9PaN4eZXW2kYR/Y2whMBLrq+EeRPXjMDpygE=
-github.com/MitoVeli/math_grpc_server v0.0.0-20221109000406-c5e5e7581ff9/go.mod h1:W6xK+h2py3GXkdeMF2Z3RGxLDtiHlEfk57E0QJsaSEE=
+github.com/MitoVeli/math_grpc_server v0.0.0-20221109095557-d2070cbfda7d h1:KTNoR3LO0ywurL9hU7lLKpa8dLtf62V7Ah3y7LUGLWw=
+github.com/MitoVeli/math_grpc_server v0.0.0-20221109095557-d2070cbfda7d/go.mod h1:XmDH8/eTpq++IB406rV446pKBxCUb8OJbMJAlb0KAvo=
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c=
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=

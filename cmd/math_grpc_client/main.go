@@ -5,15 +5,13 @@ import (
 	"log"
 	"net/http"
 
+	configs "github.com/MitoVeli/math_grpc_client/configs"
 	grpcClient "github.com/MitoVeli/math_grpc_client/pkg/grpc"
 	grpcService "github.com/MitoVeli/math_grpc_client/pkg/math_client"
 	grpcServer "github.com/MitoVeli/math_grpc_server/pkg/math"
 )
 
 func main() {
-
-	// TODO: check folder structure as asked!
-	// TODO: consider changing to float64
 
 	// declare flags
 	var firstNum float64
@@ -38,7 +36,7 @@ func main() {
 	mathGrpcServer := grpcServer.NewMathOperationsService()
 
 	// initialize grpc client
-	grpcClient.InitializeMathRpc("localhost: 50051")
+	grpcClient.InitializeMathRpc("localhost" + configs.GrpcPort)
 
 	// initialize new math grpc client
 	mathGrpcClient := grpcService.NewMathClientService(mathGrpcServer)
@@ -55,7 +53,7 @@ func main() {
 
 	// start http server
 	s := http.Server{
-		Addr: ":8008",
+		Addr: configs.AppPort,
 	}
 	s.ListenAndServe()
 

@@ -21,7 +21,7 @@ func (s *mathClientService) Calculate(x float32, y float32, operationSign string
 	// call math operation grpc server
 	err := s.mathServer.DoMath(x, y, operationSign, result)
 	if err != nil {
-		log.Fatalf("Error while sending grpc request: %v", err)
+		log.Printf("Error while sending grpc request: %v", err)
 		return err
 	}
 
