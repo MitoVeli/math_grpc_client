@@ -10,9 +10,9 @@ import (
 
 func TestCalculate(t *testing.T) {
 
-	firstNumber := int64(10)
-	secondNumber := int64(5)
-	var result int64
+	firstNumber := float32(10)
+	secondNumber := float32(5)
+	var result float32
 
 	mockMathServer := new(mockMathGrpcServer.MathOperations)
 

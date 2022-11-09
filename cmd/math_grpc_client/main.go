@@ -51,7 +51,7 @@ func main() {
 		return
 	}
 
-	log.Printf("Result is: %v", float64(result))
+	log.Printf("Result is: %v", result)
 
 	// start http server
 	s := http.Server{
