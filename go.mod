@@ -3,7 +3,7 @@ module github.com/MitoVeli/math_grpc_client
 go 1.18
 
 require (
-	github.com/MitoVeli/math_grpc_server v0.0.0-20221109095557-d2070cbfda7d
+	github.com/MitoVeli/math_grpc_server v0.0.0-20221109103409-c7df0cd65d7f
 	github.com/stretchr/testify v1.8.1
 	google.golang.org/grpc v1.50.1
 	google.golang.org/protobuf v1.28.1
@@ -17,6 +17,6 @@ require (
 	golang.org/x/net v0.2.0 // indirect
 	golang.org/x/sys v0.2.0 // indirect
 	golang.org/x/text v0.4.0 // indirect
-	google.golang.org/genproto v0.0.0-20221107162902-2d387536bcdd // indirect
+	google.golang.org/genproto v0.0.0-20221109142239-94d6d90a7d66 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
