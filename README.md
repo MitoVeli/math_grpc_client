@@ -12,14 +12,14 @@ Application can be run in two ways:
 
 -   `./math_grpc_client -firstNum=9.0 -secondNum=3.2 -operationSign="/"`
 
-As mentioned, application expects two variables and an operation sign from the user, they can be defined as in the above example.
-Default value is 0 if the firstNum or secondNum is not provided while calling the executable. There is no default operation sign, so it is necessary to define the operationSign flag.
+    As mentioned, application expects two variables and an operation sign from the user, they can be defined as in the above example.
+    Default value is 0 if the firstNum or secondNum is not provided while calling the executable. There is no default operation sign, so it is necessary to define the operationSign flag.
 
 2) Run by Docker: The application is dockerized just for demonstration purposes, if needed it can be run by the following docker command;
 
 -   `docker-compose up --build`
 
-In case the application is run by docker, necessary flags should be provided from the Dockerfile ENTRYPOINT as in the example below;
+    In case the application is run by docker, necessary flags should be provided from the Dockerfile ENTRYPOINT as in the example below;
 
 -   `ENTRYPOINT ["/cmd/math_grpc_client", "--firstNum=10", "--secondNum=20", "--operationSign=+"]`
 
