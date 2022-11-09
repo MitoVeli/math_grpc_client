@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package grpc;
 
-option go_package = "github.com/MitoVeli/math_grpc_server/grpc";
+option go_package = "github.com/MitoVeli/math_grpc_client/grpc";
 
 service MathOperations {
     rpc Calculate(OperationRequest) returns (OperationResponse) {}
