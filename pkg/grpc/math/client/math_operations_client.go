@@ -33,6 +33,7 @@ func Calculate(x float32, y float32, operationSign string) (*pb.OperationRespons
 		Y:             y,
 		OperationSign: operationSign,
 	})
+
 	if err != nil {
 		log.Fatalf("Error while sending grpc request: %v", err)
 		return nil, err
