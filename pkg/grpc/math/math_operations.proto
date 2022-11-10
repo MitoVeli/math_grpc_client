@@ -1,8 +1,8 @@
 syntax = "proto3";
 
-package grpc;
+package math;
 
-option go_package = "github.com/MitoVeli/math_grpc_client/grpc";
+option go_package = "github.com/MitoVeli/math_grpc_client/pkg/grpc/math";
 
 service MathOperations {
     rpc Calculate(OperationRequest) returns (OperationResponse) {}

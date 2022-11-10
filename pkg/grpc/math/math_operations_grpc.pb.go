@@ -2,9 +2,9 @@
 // versions:
 // - protoc-gen-go-grpc v1.2.0
 // - protoc             v3.19.4
-// source: grpc/math_operations.proto
+// source: math/math_operations.proto
 
-package grpc
+package math
 
 import (
 	context "context"
@@ -35,7 +35,7 @@ func NewMathOperationsClient(cc grpc.ClientConnInterface) MathOperationsClient {
 
 func (c *mathOperationsClient) Calculate(ctx context.Context, in *OperationRequest, opts ...grpc.CallOption) (*OperationResponse, error) {
 	out := new(OperationResponse)
-	err := c.cc.Invoke(ctx, "/grpc.MathOperations/Calculate", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/math.MathOperations/Calculate", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -80,7 +80,7 @@ func _MathOperations_Calculate_Handler(srv interface{}, ctx context.Context, dec
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/grpc.MathOperations/Calculate",
+		FullMethod: "/math.MathOperations/Calculate",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(MathOperationsServer).Calculate(ctx, req.(*OperationRequest))
@@ -92,7 +92,7 @@ func _MathOperations_Calculate_Handler(srv interface{}, ctx context.Context, dec
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var MathOperations_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "grpc.MathOperations",
+	ServiceName: "math.MathOperations",
 	HandlerType: (*MathOperationsServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -101,5 +101,5 @@ var MathOperations_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "grpc/math_operations.proto",
+	Metadata: "math/math_operations.proto",
 }
