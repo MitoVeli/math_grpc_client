@@ -2,7 +2,7 @@
 // versions:
 // - protoc-gen-go-grpc v1.2.0
 // - protoc             v3.19.4
-// source: math/math_operations.proto
+// source: math/operations.proto
 
 package math
 
@@ -101,5 +101,5 @@ var MathOperations_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "math/math_operations.proto",
+	Metadata: "math/operations.proto",
 }

@@ -4,7 +4,7 @@ package test
 // 	"errors"
 // 	"testing"
 
-// 	grpcService "github.com/MitoVeli/math_grpc_client/pkg/math_client"
+// 	grpcService "github.com/MitoVeli/math_grpc_client/pkg/grpc/math/math_client"
 // 	mockMathGrpcServer "github.com/MitoVeli/math_grpc_server/pkg/mocks"
 // 	"github.com/stretchr/testify/assert"
 // )

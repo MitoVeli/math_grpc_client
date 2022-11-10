@@ -12,7 +12,6 @@ message OperationRequest {
     float x = 1;
     float y = 2;
     string operationSign = 3;
-    float result = 4;
 }
 
 message OperationResponse {
