@@ -26,6 +26,3 @@ Application can be run in two ways, from the main application level:
 ## Test
 Tests can be run by the following command;
 -   `go test ./... -v`
-
-### Comments
-Http server in main.go is also added just for demonstration purposes. In case the application is run by docker, http server keeps the application up and running.
