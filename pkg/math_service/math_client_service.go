@@ -3,7 +3,7 @@ package math_service
 import (
 	"log"
 
-	mathClient "github.com/MitoVeli/math_grpc_client/pkg/gprc/math/client"
+	mathClient "github.com/MitoVeli/math_grpc_client/pkg/grpc/math/client"
 )
 
 type mathClientService struct {
@@ -21,5 +21,5 @@ func (s *mathClientService) Calculate(x float32, y float32, operationSign string
 		return 0, err
 	}
 
-	return result, err
+	return result.Result, nil
 }

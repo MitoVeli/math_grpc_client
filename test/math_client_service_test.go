@@ -1,10 +1,9 @@
 package test
 
 // import (
-// 	"errors"
 // 	"testing"
 
-// 	grpcService "github.com/MitoVeli/math_grpc_client/pkg/grpc/math/math_client"
+// 	grpcService "github.com/MitoVeli/math_grpc_client/pkg/math_service"
 // 	mockMathGrpcServer "github.com/MitoVeli/math_grpc_server/pkg/mocks"
 // 	"github.com/stretchr/testify/assert"
 // )
@@ -13,80 +12,80 @@ package test
 
 // 	firstNumber := float32(10)
 // 	secondNumber := float32(5)
-// 	invalidOperationSign := "&"
+// 	// invalidOperationSign := "&"
 // 	var result float32
 
 // 	mockMathServer := new(mockMathGrpcServer.MathOperations)
 
-// 	mathGrpcClient := grpcService.NewMathClientService(mockMathServer)
+// 	mathGrpcClient := grpcService.NewMathClientService()
 
 // 	t.Run("Add", func(t *testing.T) {
 
-// 		mockMathServer.On("DoMath", firstNumber, secondNumber, "+", &result).Return(nil)
+// 		mockMathServer.On("Calculate", firstNumber, secondNumber, "+", &result).Return(nil)
 
 // 		// trigger client math operation with given parameters
-// 		err := mathGrpcClient.Calculate(firstNumber, secondNumber, "+", &result)
+// 		_, err := mathGrpcClient.Calculate(firstNumber, secondNumber, "+")
 
 // 		assert.NoError(t, err)
 // 	})
 
-// 	t.Run("Subtract", func(t *testing.T) {
+// t.Run("Subtract", func(t *testing.T) {
 
-// 		mockMathServer.On("DoMath", firstNumber, secondNumber, "-", &result).Return(nil)
+// 	mockMathServer.On("DoMath", firstNumber, secondNumber, "-", &result).Return(nil)
 
-// 		// trigger client math operation with given parameters
-// 		err := mathGrpcClient.Calculate(firstNumber, secondNumber, "-", &result)
+// 	// trigger client math operation with given parameters
+// 	err := mathGrpcClient.Calculate(firstNumber, secondNumber, "-", &result)
 
-// 		assert.NoError(t, err)
-// 	})
+// 	assert.NoError(t, err)
+// })
 
-// 	t.Run("Multiply", func(t *testing.T) {
+// t.Run("Multiply", func(t *testing.T) {
 
-// 		mockMathServer.On("DoMath", firstNumber, secondNumber, "*", &result).Return(nil)
+// 	mockMathServer.On("DoMath", firstNumber, secondNumber, "*", &result).Return(nil)
 
-// 		// trigger client math operation with given parameters
-// 		err := mathGrpcClient.Calculate(firstNumber, secondNumber, "*", &result)
+// 	// trigger client math operation with given parameters
+// 	err := mathGrpcClient.Calculate(firstNumber, secondNumber, "*", &result)
 
-// 		assert.NoError(t, err)
-// 	})
+// 	assert.NoError(t, err)
+// })
 
-// 	t.Run("Divide", func(t *testing.T) {
+// t.Run("Divide", func(t *testing.T) {
 
-// 		mockMathServer.On("DoMath", firstNumber, secondNumber, "/", &result).Return(nil)
+// 	mockMathServer.On("DoMath", firstNumber, secondNumber, "/", &result).Return(nil)
 
-// 		// trigger client math operation with given parameters
-// 		err := mathGrpcClient.Calculate(firstNumber, secondNumber, "/", &result)
+// 	// trigger client math operation with given parameters
+// 	err := mathGrpcClient.Calculate(firstNumber, secondNumber, "/", &result)
 
-// 		assert.NoError(t, err)
-// 	})
+// 	assert.NoError(t, err)
+// })
 
-// 	t.Run("Divide by zero", func(t *testing.T) {
+// t.Run("Divide by zero", func(t *testing.T) {
 
-// 		mockMathServer.On("DoMath", float32(0), float32(0), "/", &result).Return(errors.New("Error while sending grpc request: cannot divide by zero"))
+// 	mockMathServer.On("DoMath", float32(0), float32(0), "/", &result).Return(errors.New("Error while sending grpc request: cannot divide by zero"))
 
-// 		// trigger client math operation with given parameters
-// 		err := mathGrpcClient.Calculate(float32(0), float32(0), "/", &result)
+// 	// trigger client math operation with given parameters
+// 	err := mathGrpcClient.Calculate(float32(0), float32(0), "/", &result)
 
-// 		assert.EqualError(t, err, "Error while sending grpc request: cannot divide by zero")
-// 	})
+// 	assert.EqualError(t, err, "Error while sending grpc request: cannot divide by zero")
+// })
 
-// 	t.Run("Divide by zero", func(t *testing.T) {
+// t.Run("Divide by zero", func(t *testing.T) {
 
-// 		mockMathServer.On("DoMath", float32(0), float32(0), "/", &result).Return(errors.New("Error while sending grpc request: cannot divide by zero"))
+// 	mockMathServer.On("DoMath", float32(0), float32(0), "/", &result).Return(errors.New("Error while sending grpc request: cannot divide by zero"))
 
-// 		// trigger client math operation with given parameters
-// 		err := mathGrpcClient.Calculate(float32(0), float32(0), "/", &result)
+// 	// trigger client math operation with given parameters
+// 	err := mathGrpcClient.Calculate(float32(0), float32(0), "/", &result)
 
-// 		assert.EqualError(t, err, "Error while sending grpc request: cannot divide by zero")
-// 	})
+// 	assert.EqualError(t, err, "Error while sending grpc request: cannot divide by zero")
+// })
 
-// 	t.Run("Invalid operation sign", func(t *testing.T) {
+// t.Run("Invalid operation sign", func(t *testing.T) {
 
-// 		mockMathServer.On("DoMath", firstNumber, secondNumber, invalidOperationSign, &result).Return(errors.New("Error while sending grpc request: invalid operation sign"))
+// 	mockMathServer.On("DoMath", firstNumber, secondNumber, invalidOperationSign, &result).Return(errors.New("Error while sending grpc request: invalid operation sign"))
 
-// 		// trigger client math operation with given parameters
-// 		err := mathGrpcClient.Calculate(firstNumber, secondNumber, invalidOperationSign, &result)
+// 	// trigger client math operation with given parameters
+// 	err := mathGrpcClient.Calculate(firstNumber, secondNumber, invalidOperationSign, &result)
 
-// 		assert.EqualError(t, err, "Error while sending grpc request: invalid operation sign")
-// 	})
+// 	assert.EqualError(t, err, "Error while sending grpc request: invalid operation sign")
+// })
 // }
