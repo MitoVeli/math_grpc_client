@@ -2,6 +2,7 @@ package main
 
 import (
 	"flag"
+	"log"
 	"net/http"
 
 	configs "github.com/MitoVeli/math_grpc_client/configs"
@@ -25,20 +26,20 @@ func main() {
 		operationSign = "+"
 	}
 
-	// // convert firstNum from float64 to float32
-	// x := float32(firstNum)
-	// y := float32(secondNum)
+	// convert firstNum from float64 to float32
+	x := float32(firstNum)
+	y := float32(secondNum)
 
 	// initialize grpc client
 	grpcClient.InitializeMathRpc("localhost" + configs.GrpcPort)
 
-	// // send request to grpc server
-	// result, err := grpcClient.Calculate(x, y, operationSign)
-	// if err != nil {
-	// 	log.Fatalf("Error while sending grpc request: %v", err)
-	// }
+	// send request to grpc server
+	result, err := grpcClient.Calculate(x, y, operationSign)
+	if err != nil {
+		log.Fatalf("Error while sending grpc request: %v", err)
+	}
 
-	// log.Printf("Result is: %v", result)
+	log.Printf("Result is: %v", result)
 
 	// start http server
 	s := http.Server{
