@@ -3,7 +3,7 @@ package math_service
 import (
 	"log"
 
-	mathClient "github.com/MitoVeli/math_grpc_client/pkg/gprc/math/math_client"
+	mathClient "github.com/MitoVeli/math_grpc_client/pkg/gprc/math/client"
 )
 
 type mathClientService struct {
