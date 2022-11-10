@@ -1,4 +1,4 @@
 package configs
 
 var AppPort = ":8008"
-var GrpcPort = ":50051"
+var GrpcPort = ":50052"

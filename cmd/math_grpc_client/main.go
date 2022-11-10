@@ -33,6 +33,7 @@ func main() {
 	// initialize grpc client
 	grpcClient.InitializeMathRpc("localhost" + configs.GrpcPort)
 
+	// send request to grpc server
 	result, err := grpcClient.Calculate(x, y, operationSign)
 	if err != nil {
 		log.Fatalf("Error while sending grpc request: %v", err)

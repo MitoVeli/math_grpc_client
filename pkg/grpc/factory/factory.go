@@ -29,8 +29,6 @@ func InitializeRpc(connectionString string, initClient func(c *grpc.ClientConn))
 func connect(f func(c *grpc.ClientConn)) error {
 	var err error
 
-	log.Printf("Connecting to gRPC server: %s", connString)
-
 	clientConn, err := grpc.Dial(connString, grpc.WithInsecure())
 	if err != nil {
 		log.Fatalf("Could not connect to gRPC server: %v", err)
