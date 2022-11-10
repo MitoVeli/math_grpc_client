@@ -39,6 +39,6 @@ func Calculate(x float32, y float32, operationSign string) (*pb.OperationRespons
 		return nil, err
 	}
 
-	return res, nil
+	return res, err
 
 }
