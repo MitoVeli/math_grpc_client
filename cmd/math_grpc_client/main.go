@@ -27,10 +27,14 @@ func main() {
 	x := float32(firstNum)
 	y := float32(secondNum)
 
+	// check app environment and set connection string for grpc server
+	environment := configs.SetEnv()
+
 	// initialize grpc client
-	grpcClient.InitializeMathRpc("localhost" + configs.GrpcPort)
+	grpcClient.InitializeMathRpc(environment + configs.GrpcPort)
 
 	newMathService := mathService.NewMathClientService()
+
 	result, err := newMathService.Calculate(x, y, operationSign)
 	if err != nil {
 		log.Fatalf("Error while sending grpc request: %v", err)

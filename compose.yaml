@@ -6,3 +6,7 @@ services:
     restart: always
     ports:
       - 8008:8008
+
+networks:
+  default:
+    name: math_network

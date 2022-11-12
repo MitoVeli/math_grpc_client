@@ -2,7 +2,7 @@
 Math operations grpc client; gets operation sign and variables from the user as flags, sends them to [math_grpc_server](https://github.com/MitoVeli/math_grpc_server) and receives the result of the operation.
 
 ## Build
-Application can be build by the following command from the main application directory;
+Application executable can be build by the following command from the main application directory;
 
 -   `go build ./cmd/math_grpc_client`
 ## Run
