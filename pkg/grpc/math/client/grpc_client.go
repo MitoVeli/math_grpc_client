@@ -11,24 +11,28 @@ import (
 	"google.golang.org/grpc"
 )
 
-var (
-	defaultRequestTimeout = time.Second * 5
+type mathGrpcClient struct {
+	defaultRequestTimeout time.Duration
 	client                pb.MathOperationsClient
-)
+}
 
-// InitializeAuthRpc inits gRPC connection and creates a client
-func InitializeMathRpc(connectionString string) {
+func NewMathGrpcClient(connectionString string) MathGrpcClient {
+	var client pb.MathOperationsClient
 	factory.InitializeRpc(connectionString, func(c *grpc.ClientConn) {
 		client = pb.NewMathOperationsClient(c)
 	})
+	return &mathGrpcClient{
+		defaultRequestTimeout: time.Second * 5,
+		client:                client,
+	}
 }
 
-func Calculate(x float32, y float32, operationSign string) (*pb.OperationResponse, error) {
-	ctx, cancel := context.WithTimeout(context.Background(), defaultRequestTimeout)
+func (c mathGrpcClient) Calculate(x float32, y float32, operationSign string) (*pb.OperationResponse, error) {
+	ctx, cancel := context.WithTimeout(context.Background(), c.defaultRequestTimeout)
 	defer cancel()
 
 	// call math operation grpc server
-	res, err := client.Calculate(ctx, &pb.OperationRequest{
+	res, err := c.client.Calculate(ctx, &pb.OperationRequest{
 		X:             x,
 		Y:             y,
 		OperationSign: operationSign,

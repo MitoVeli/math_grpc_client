@@ -31,11 +31,11 @@ func main() {
 	environment := configs.SetEnv()
 
 	// initialize grpc client
-	grpcClient.InitializeMathRpc(environment + configs.GrpcPort)
+	newGrpcClient := grpcClient.NewMathGrpcClient(environment + configs.GrpcPort)
 
-	newMathService := mathService.NewMathClientService()
+	newMathService := mathService.NewMathClientService(newGrpcClient)
 
-	result, err := newMathService.Calculate(x, y, operationSign)
+	result, err := newMathService.DoMath(x, y, operationSign)
 	if err != nil {
 		log.Fatalf("Error while sending grpc request: %v", err)
 		return

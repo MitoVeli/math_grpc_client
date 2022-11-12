@@ -3,21 +3,24 @@ package math_service
 import (
 	"log"
 
-	mathClient "github.com/MitoVeli/math_grpc_client/pkg/grpc/math/client"
+	grpcClient "github.com/MitoVeli/math_grpc_client/pkg/grpc/math/client"
 )
 
 type mathClientService struct {
+	client grpcClient.MathGrpcClient
 }
 
-func NewMathClientService() MathService {
-	return &mathClientService{}
+func NewMathClientService(client grpcClient.MathGrpcClient) MathService {
+	return &mathClientService{
+		client: client,
+	}
 }
 
-func (s *mathClientService) Calculate(x float32, y float32, operationSign string) (float32, error) {
+func (s *mathClientService) DoMath(x float32, y float32, operationSign string) (float32, error) {
 
-	result, err := mathClient.Calculate(x, y, operationSign)
+	result, err := s.client.Calculate(x, y, operationSign)
 	if err != nil {
-		log.Fatalf("Error while sending grpc request: %v", err)
+		log.Printf("Error while sending grpc request: %v", err)
 		return 0, err
 	}
 
